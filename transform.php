@@ -36,13 +36,14 @@ foreach ($questions as $question) {
 file_put_contents('new_question_format.json', json_encode($output, JSON_PRETTY_PRINT));
 unset($output);
 
-$types = [];
-$types['types'] = [];
-$types['types'][] = ['values' => []];
+$intent            = [];
+$intent['name']    = 'answers';
+$intent['types']   = [];
+$intent['types'][] = ['values' => []];
 
 foreach ($questions as $question) {
     foreach ($question->getAnswers() as $answer) {
-        $types['types'][0]['values'][] = [
+        $intent['types'][0]['values'][] = [
             'name' => [
                 'value' => $answer,
             ],
@@ -50,7 +51,7 @@ foreach ($questions as $question) {
     }
 }
 
-file_put_contents('answer_values.json', json_encode($types, JSON_PRETTY_PRINT));
+file_put_contents('answer_values.json', json_encode($intent, JSON_PRETTY_PRINT));
 
 
 //{"types": [
