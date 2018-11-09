@@ -36,9 +36,11 @@ file_put_contents('shuffled_answers.json', json_encode($output, JSON_PRETTY_PRIN
 unset($output);
 
 $intent            = [];
-$intent['name']    = 'answers';
 $intent['types']   = [];
-$intent['types'][] = ['values' => []];
+$intent['types'][] = [
+    'name' => 'answers',
+    'values' => []
+];
 
 foreach ($questions as $question) {
     foreach ($question->getAnswers() as $answer) {

@@ -38,10 +38,10 @@ foreach ($questions as $question) {
 file_put_contents('new_question_format.json', json_encode($output, JSON_PRETTY_PRINT));
 unset($output);
 
-$intent            = [];
-$intent['name']    = 'answers';
-$intent['types']   = [];
-$intent['types'][] = ['values' => []];
+$intent                  = [];
+$intent['types']         = [];
+$intent['name'] ['name'] = 'answers';
+$intent['types'][]       = ['values' => []];
 
 foreach ($questions as $question) {
     foreach ($question->getAnswers() as $answer) {
