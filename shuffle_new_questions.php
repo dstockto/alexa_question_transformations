@@ -39,17 +39,25 @@ $intent            = [];
 $intent['types']   = [];
 $intent['types'][] = [
     'name' => 'answers',
-    'values' => []
+    'values' => [],
 ];
 
+$allAnswers = [];
+/** @var Question $question */
 foreach ($questions as $question) {
     foreach ($question->getAnswers() as $answer) {
-        $intent['types'][0]['values'][] = [
-            'name' => [
-                'value' => $answer,
-            ],
-        ];
+        $allAnswers[] = $answer;
     }
+}
+
+$allAnswers = array_unique($allAnswers);
+
+foreach ($allAnswers as $answer) {
+    $intent['types'][0]['values'][] = [
+        'name' => [
+            'value' => $answer,
+        ],
+    ];
 }
 
 file_put_contents('answer_values.json', json_encode($intent, JSON_PRETTY_PRINT));
